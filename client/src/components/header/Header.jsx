@@ -38,7 +38,7 @@ const Header = () => {
   }
   
   return (
-    <div className='bg-sky-700 text-white flex justify-center relative'>
+    <div className='bg-sky-700 text-white flex justify-center relative z-10'>
         <div className={ 'container w-full mt-5 ' + ((useLocation().pathname === '/hotels') ? 'mb-0' : 'mb-24') }>
             <div className='flex gap-10 mb-12'>
               <div className='flex items-center gap-2.5 border border-white p-2.5 rounded-3xl bg-white bg-opacity-10'>
