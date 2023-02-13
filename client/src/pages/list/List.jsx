@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom"
 import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
 
+import SearchItem from '../../components/searchItem/SearchItem'
+
 const List = () => {
   const location = useLocation()
   const [destination, setDestination] = useState(location.state.destination)
@@ -73,7 +75,15 @@ const List = () => {
         </div>
 
         <div className="listResult flex-[3]">
-          
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
+          <SearchItem />
         </div>
       </div>
     </div>
