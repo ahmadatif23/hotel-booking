@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faCalendarDay, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid-svg-icons'
 import { DateRange } from 'react-date-range'
@@ -10,6 +10,7 @@ import 'react-date-range/dist/theme/default.css'
 
 const Header = () => {
   // SET DATE
+  const [destination, setDestination] = useState('')
   const [openDate, setOpenDate] = useState(false)
   const [date, setDate] = useState([
     {
@@ -27,6 +28,9 @@ const Header = () => {
     room: 1
   })
 
+  // DECLARE NAVIGATE
+  const navigate = useNavigate()
+
   // OPTIONS FUNCTION
   const handleOption = (name, operation) => {
     setOptions(prevOptions => {
@@ -35,6 +39,11 @@ const Header = () => {
         [name]: operation === 'add' ? (options[name] + 1) : (options[name] - 1)
       }
     })
+  }
+
+  // GO TO ROUTE ON SEARCH
+  const handleSearch = () => {
+    navigate('/hotels', { state: {destination, date, options  } })
   }
   
   return (
@@ -74,7 +83,7 @@ const Header = () => {
                 <div className='bg-white rounded-xl flex items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md'>
                   <div className='flex items-center gap-2.5'>
                     <FontAwesomeIcon icon={ faBed } className='text-gray-400'/>
-                    <input type="text" placeholder='Where are you going?' className='outline-none' />
+                    <input onChange={ e => setDestination(e.target.value) } type="text" placeholder='Where are you going?' className='outline-none text-gray-800' />
                   </div>
 
                   <div className='flex items-center gap-2.5'>
@@ -134,7 +143,7 @@ const Header = () => {
                   </div>
 
                   <div>
-                    <button className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Search</button>
+                    <button onClick={ handleSearch } className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Search</button>
                   </div>
                 </div>
               </>
