@@ -48,7 +48,7 @@ const Header = () => {
   
   return (
     <div className='bg-sky-700 text-white flex justify-center relative z-10'>
-        <div className={ 'container w-full mt-5 ' + ((useLocation().pathname === '/hotels') ? 'mb-0' : 'mb-24') }>
+        <div className={ 'container w-full mt-5 ' + ((useLocation().pathname === '/') ? 'mb-24' : 'mb-0') }>
             <div className='flex gap-10 mb-12'>
               <div className='flex items-center gap-2.5 border border-white p-2.5 rounded-3xl bg-white bg-opacity-10'>
                 <FontAwesomeIcon icon={ faBed } />
@@ -73,7 +73,7 @@ const Header = () => {
               </div>
             </div>
 
-            { useLocation().pathname !== '/hotels' &&
+            { useLocation().pathname === '/' &&
               <>
                 <h1 className='text-4xl font-bold'>A lifetime of discounts? It's Genius.</h1>
                 <p className='my-5'>Get rewarded for your travels - unlock instant savings of 10% or more with a free BooKit account</p>
