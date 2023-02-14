@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 import Mailist from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
+import { useState } from 'react'
 
 
 const Hotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0)
+  const [open, setOpen] = useState(false)
+
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -27,8 +31,39 @@ const Hotel = () => {
     },
   ];
 
+  const handleOpen = (i) => {
+    setSlideNumber(i)
+    setOpen(true)
+  }
+
+  const handleMove = (direction) => {
+    let newSlideNumber
+
+    if (direction === 'l') {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1
+    } else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1
+    }
+
+    setSlideNumber(newSlideNumber)
+  }
+
   return (
     <div className='hotelContainer flex flex-col items-center mt-5'>
+      {
+        open &&
+        <div className='slider sticky top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-[999] flex items-center'>
+          <FontAwesomeIcon icon={ faCircleXmark } className="close absolute top-5 right-5 text-3xl text-gray-300 cursor-pointer" onClick={() => setOpen(false)} />
+          <FontAwesomeIcon icon={ faCircleArrowLeft } className="arrow m-5 text-5xl text-gray-300 cursor-pointer" onClick={() => handleMove("l")} />
+
+          <div className="sliderWrapper w-full h-full flex justify-center items-center">
+            <img src={ photos[slideNumber].src } alt="" className="sliderImg w-4/5 h-[80vh]" />
+          </div>
+
+          <FontAwesomeIcon icon={ faCircleArrowRight } className="arrow m-5 text-5xl text-gray-300 cursor-pointer" onClick={() => handleMove("r")} />
+        </div>
+      }
+
       <div className="hotelWrapper w-full container flex flex-col gap-2.5 relative">
         <h1 className="hotelTitle text-2xl">Grand Hotel</h1>
 
@@ -48,7 +83,7 @@ const Hotel = () => {
         <div className="hotelImages flex flex-wrap justify-between">
           {photos.map((photo, i) => (
             <div className="hotelImgWrapper w-1/3" key={i}>
-              <img src={photo.src} alt="" className="hotelImg w-full object-cover cursor-pointer" />
+              <img onClick={ () => handleOpen(i) } src={photo.src} alt="" className="hotelImg w-full object-cover cursor-pointer" />
             </div>
           ))}
         </div>
