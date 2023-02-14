@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <div className="w-full container text-xs">
-            <div className="w-full flex justify-between mb-12">
+        <div className="w-full container md:text-xs text-[10px] md:px-0 px-2.5">
+            <div className="w-full flex justify-between md:mb-12 mb-4">
                 <ul className="fList text-sky-900">
                     <li className="mb-2.5">Countries</li>
                     <li className="mb-2.5">Regions</li>

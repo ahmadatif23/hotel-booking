@@ -47,40 +47,40 @@ const Header = () => {
   }
   
   return (
-    <div className='bg-sky-700 text-white flex justify-center relative z-10'>
+    <div className='bg-sky-700 text-white flex justify-center relative z-10 md:px-0 px-2.5'>
         <div className={ 'container w-full mt-5 ' + ((useLocation().pathname === '/') ? 'mb-24' : 'mb-0') }>
             <div className='flex gap-10 mb-12'>
               <div className='flex items-center gap-2.5 border border-white p-2.5 rounded-3xl bg-white bg-opacity-10'>
                 <FontAwesomeIcon icon={ faBed } />
-                <span>Stays</span>
+                <span className='md:block hidden'>Stays</span>
               </div>
               
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faPlane } />
-                <span>Flights</span>
+                <span className='md:block hidden'>Flights</span>
               </div>
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faCar } />
-                <span>Car Rentals</span>
+                <span className='md:block hidden'>Car Rentals</span>
               </div>
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faToriiGate } />
-                <span>Attractions</span>
+                <span className='md:block hidden'>Attractions</span>
               </div>
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faTaxi } />
-                <span>Airport Taxis</span>
+                <span className='md:block hidden'>Airport Taxis</span>
               </div>
             </div>
 
             { useLocation().pathname === '/' &&
               <>
-                <h1 className='text-4xl font-bold'>A lifetime of discounts? It's Genius.</h1>
-                <p className='my-5'>Get rewarded for your travels - unlock instant savings of 10% or more with a free BooKit account</p>
+                <h1 className='md:text-4xl text-3xl font-bold'>A lifetime of discounts? It's Genius.</h1>
+                <p className='my-5 text-sm md:text-base'>Get rewarded for your travels - unlock instant savings of 10% or more with a free BooKit account</p>
 
                 <button className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Sign In / Register</button>
 
-                <div className='bg-white rounded-xl flex items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md text-sm'>
+                <div className='bg-white rounded-xl flex md:flex-row flex-col items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md text-sm'>
                   <div className='flex flex-1 justify-center items-center gap-2.5'>
                     <FontAwesomeIcon icon={ faBed } className='text-gray-400'/>
                     <input onChange={ e => setDestination(e.target.value) } type="text" placeholder='Where are you going?' className='outline-none text-gray-800' />

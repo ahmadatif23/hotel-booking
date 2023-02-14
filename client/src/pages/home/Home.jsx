@@ -9,7 +9,7 @@ const Home = () => {
     <div className="mt-12 flex flex-col items-center gap-7">
       <Featured />
 
-      <div>
+      <div className="w-full md:px-0 px-2.5">
         <h1 className="w-full container text-2xl text-slate-700 font-bold mb-3">Browse by property type</h1>
         <PropertyList />
       </div>

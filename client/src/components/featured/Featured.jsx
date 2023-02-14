@@ -1,6 +1,6 @@
 const Featured = () => {
   return (
-    <div className="w-full container flex justify-between gap-5 z-0">
+    <div className="w-full container flex md:flex-row flex-col justify-between md:gap-5 gap-2.5 z-0 md:px-0 px-2.5">
       <div className="relative text-white overflow-hidden rounded-lg h-60 group cursor-pointer">
         <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-transparent group-hover:from-transparent"></div>
         <img
