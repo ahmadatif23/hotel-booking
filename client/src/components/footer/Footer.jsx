@@ -47,7 +47,7 @@ const Footer = () => {
                 </ul>
             </div>
 
-            <div className="fText">Copyright © 2022 Lamabooking.</div>
+            <div className="fText text-gray-400 py-2">Copyright © 2023 BooKit</div>
         </div>
     )
 }

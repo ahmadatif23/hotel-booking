@@ -11,7 +11,7 @@ const PropertyList = () => {
         </div>
 
         <div>
-          <h1 className="text-lg font-semibold">Hotels</h1>
+          <h1 className="text-lg font-semibold text-slate-700">Hotels</h1>
           <h2 className="text-sm text-gray-500">233 hotels</h2>
         </div>
       </div>
@@ -26,7 +26,7 @@ const PropertyList = () => {
         </div>
 
         <div>
-          <h1 className="text-lg font-semibold">Apartments</h1>
+          <h1 className="text-lg font-semibold text-slate-700">Apartments</h1>
           <h2 className="text-sm text-gray-500">2331 hotels</h2>
         </div>
       </div>
@@ -41,7 +41,7 @@ const PropertyList = () => {
         </div>
 
         <div>
-          <h1 className="text-lg font-semibold">Resorts</h1>
+          <h1 className="text-lg font-semibold text-slate-700">Resorts</h1>
           <h2 className="text-sm text-gray-500">2331 hotels</h2>
         </div>
       </div>
@@ -56,7 +56,7 @@ const PropertyList = () => {
         </div>
 
         <div>
-          <h1 className="text-lg font-semibold">Villas</h1>
+          <h1 className="text-lg font-semibold text-slate-700">Villas</h1>
           <h2 className="text-sm text-gray-500">2331 hotels</h2>
         </div>
       </div>
@@ -71,7 +71,7 @@ const PropertyList = () => {
         </div>
 
         <div>
-          <h1 className="text-lg font-semibold">Cabins</h1>
+          <h1 className="text-lg font-semibold text-slate-700">Cabins</h1>
           <h2 className="text-sm text-gray-500">2331 hotels</h2>
         </div>
       </div>

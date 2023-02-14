@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBed, faCalendarDay, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid-svg-icons'
+import { faBed, faCalendarDay, faCar, faPerson, faPlane, faTaxi, faToriiGate } from '@fortawesome/free-solid-svg-icons'
 import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
 import { useState } from 'react'
@@ -64,7 +64,7 @@ const Header = () => {
                 <span>Car Rentals</span>
               </div>
               <div className='flex items-center gap-2.5'>
-                <FontAwesomeIcon icon={ faBed } />
+                <FontAwesomeIcon icon={ faToriiGate } />
                 <span>Attractions</span>
               </div>
               <div className='flex items-center gap-2.5'>
@@ -80,13 +80,13 @@ const Header = () => {
 
                 <button className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Sign In / Register</button>
 
-                <div className='bg-white rounded-xl flex items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md'>
-                  <div className='flex items-center gap-2.5'>
+                <div className='bg-white rounded-xl flex items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md text-sm'>
+                  <div className='flex flex-1 justify-center items-center gap-2.5'>
                     <FontAwesomeIcon icon={ faBed } className='text-gray-400'/>
                     <input onChange={ e => setDestination(e.target.value) } type="text" placeholder='Where are you going?' className='outline-none text-gray-800' />
                   </div>
 
-                  <div className='flex items-center gap-2.5'>
+                  <div className='flex flex-1 justify-center items-center gap-2.5'>
                     <FontAwesomeIcon icon={ faCalendarDay } className='text-gray-400'/>
                     <span onClick={ () => setOpenDate(!openDate) } className='text-gray-400 cursor-pointer'>{ `${format(date[0].startDate, 'dd/MM/yyyy')} to ${format(date[0].endDate, 'dd/MM/yyyy')}` }</span>
 
@@ -102,7 +102,7 @@ const Header = () => {
                     }
                   </div>
 
-                  <div className='flex items-center gap-2.5'>
+                  <div className='flex flex-1 justify-center items-center gap-2.5'>
                     <FontAwesomeIcon icon={ faPerson } className='text-gray-400'/>
                     <span onClick={ () => setOpenOptions(!openOptions) } className='text-gray-400 cursor-pointer'>{ `${ options.adult } adult • ${ options.children } children • ${ options.room } room` }</span>
 
@@ -114,7 +114,7 @@ const Header = () => {
 
                           <div className='flex gap-3 items-center text-xs text-gray-800'>
                             <button disabled={ options.adult <= 1 } onClick={ () => handleOption('adult', 'minus') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>-</button>
-                            <span>{ options.adult }</span>
+                            <span className='w-4 flex items-center justify-center'>{ options.adult }</span>
                             <button onClick={ () => handleOption('adult', 'add') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>+</button>
                           </div>
                         </div>
@@ -124,7 +124,7 @@ const Header = () => {
 
                           <div className='flex gap-3 items-center text-xs text-gray-800'>
                             <button disabled={ options.children < 1 } onClick={ () => handleOption('children', 'minus') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>-</button>
-                            <span>{ options.children }</span>
+                            <span className='w-4 flex items-center justify-center'>{ options.children }</span>
                             <button onClick={ () => handleOption('children', 'add') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>+</button>
                           </div>
                         </div>
@@ -134,7 +134,7 @@ const Header = () => {
 
                           <div className='flex gap-3 items-center text-xs text-gray-800'>
                             <button disabled={ options.room <= 1 } onClick={ () => handleOption('room', 'minus') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>-</button>
-                            <span>{ options.room }</span>
+                            <span className='w-4 flex items-center justify-center'>{ options.room }</span>
                             <button onClick={ () => handleOption('room', 'add') } className='w-6 h-6 rounded border border-sky-500 text-sky-500 disabled:border-sky-300'>+</button>
                           </div>
                         </div>

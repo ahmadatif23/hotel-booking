@@ -9,11 +9,15 @@ const Home = () => {
     <div className="mt-12 flex flex-col items-center gap-7">
       <Featured />
 
-      <h1 className="w-full container text-2xl font-bold mb-3">Browse by property type</h1>
-      <PropertyList />
+      <div>
+        <h1 className="w-full container text-2xl text-slate-700 font-bold mb-3">Browse by property type</h1>
+        <PropertyList />
+      </div>
 
-      <h1 className="w-full container text-2xl font-bold mb-3">Home guests love</h1>
-      <FeaturedProperties />
+      <div>
+        <h1 className="w-full container text-2xl text-slate-700 font-bold mb-3">Home guests love</h1>
+        <FeaturedProperties />
+      </div>
 
       <MailList />
 

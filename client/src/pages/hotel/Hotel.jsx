@@ -49,7 +49,7 @@ const Hotel = () => {
   }
 
   return (
-    <div className='hotelContainer flex flex-col items-center mt-5'>
+    <div className='hotelContainer flex flex-col items-center gap-7'>
       {
         open &&
         <div className='slider sticky top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-[999] flex items-center'>
@@ -64,7 +64,7 @@ const Hotel = () => {
         </div>
       }
 
-      <div className="hotelWrapper w-full container flex flex-col gap-2.5 relative">
+      <div className="hotelWrapper w-full container flex flex-col gap-2.5 relative mt-5">
         <h1 className="hotelTitle text-2xl">Grand Hotel</h1>
 
         <div className="hotelAddress text-xs flex items-center gap-2.5">
@@ -80,10 +80,10 @@ const Hotel = () => {
           Book a stay over $114 at this property and get a free airport taxi
         </span>
 
-        <div className="hotelImages flex flex-wrap justify-between">
+        <div className="hotelImages flex flex-wrap justify-between -m-1">
           {photos.map((photo, i) => (
-            <div className="hotelImgWrapper w-1/3" key={i}>
-              <img onClick={ () => handleOpen(i) } src={photo.src} alt="" className="hotelImg w-full object-cover cursor-pointer" />
+            <div className="hotelImgWrapper w-1/3 p-1" key={i}>
+              <img onClick={ () => handleOpen(i) } src={photo.src} alt="" className="hotelImg w-full object-cover cursor-pointer rounded hover:scale-[1.01] transition-all duration-300" />
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ const Hotel = () => {
             </p>
           </div>
 
-          <div className="hotelDetailsPrice flex-1 bg-gray-100 p-5 flex flex-col gap-5">
+          <div className="hotelDetailsPrice flex-1 bg-gray-100 p-5 flex flex-col gap-5 rounded-lg">
             <h1 className='text-lg text-gray-600'>Perfect for a 9-night stay!</h1>
 
             <span className='text-sm'>
@@ -120,10 +120,10 @@ const Hotel = () => {
             <button className='px-2.5 py-5 bg-sky-600 text-white font-bold rounded-md'>Reserve or Book Now!</button>
           </div>
         </div>
-
-        <Mailist />
-        <Footer />
       </div>
+
+      <Mailist />
+      <Footer />
     </div>
   )
 }
