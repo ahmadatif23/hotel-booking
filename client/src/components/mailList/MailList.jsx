@@ -6,7 +6,7 @@ const MailList = () => {
         <p className="text-sm">Sign up and we'll send the best deals to you</p>
       </div>
 
-      <div className="flex items-center md:flex-row flex-col md:gap-0 gap-1.5 w-full">
+      <div className="flex items-center justify-center md:flex-row flex-col md:gap-0 gap-1.5 w-full">
         <input type="text" placeholder="Your Email" className="md:w-80 w-full h-12 px-5 md:mr-2 rounded text-sm outline-none" />
         <button className="h-12 md:w-auto w-full px-5 bg-sky-500 text-white text-sm font-medium rounded">Subscribe</button>
       </div>
