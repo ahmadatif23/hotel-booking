@@ -1,11 +1,16 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import cookieParser from 'cookie-parser'
+
+// ROUTE
 import authRoute from './routes/auth.js'
 import usersRoute from './routes/users.js'
 import hotelsRoute from './routes/hotels.js'
 import roomsRoute from './routes/rooms.js'
 
+
+// INIT EXPRESS
 const app = express()
 dotenv.config()
 
@@ -22,6 +27,7 @@ const connect = async () => {
 
 
 // MIDDLEWARE
+app.use(cookieParser())
 app.use(express.json())
 
 app.use('/api/auth', authRoute)
