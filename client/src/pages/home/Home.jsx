@@ -14,7 +14,7 @@ const Home = () => {
         <PropertyList />
       </div>
 
-      <div>
+      <div className="w-full md:px-0 px-2.5">
         <h1 className="w-full container text-2xl text-slate-700 font-bold mb-3">Home guests love</h1>
         <FeaturedProperties />
       </div>
