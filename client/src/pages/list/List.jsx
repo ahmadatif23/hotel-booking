@@ -4,6 +4,7 @@ import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
 
 import SearchItem from '../../components/searchItem/SearchItem'
+import useFetch from "../../hooks/useFetch.js"
 
 const List = () => {
   const location = useLocation()
@@ -11,6 +12,14 @@ const List = () => {
   const [openDate, setOpenDate] = useState(false)
   const [date, setDate] = useState(location.state.date)
   const [options, setOptions] = useState(location.state.options)
+  const [min, setMin] = useState(undefined)
+  const [max, setMax] = useState(undefined)
+
+  const { data, loading, reFetch } = useFetch(`hotels?city=${ destination }&min=${ min || 0 }&max=${ max || 999 }`)
+
+  const handleClick = () => {
+    reFetch()
+  }
 
   return (
     <div className="flex justify-center mt-5">
@@ -20,7 +29,7 @@ const List = () => {
 
           <div className="flex flex-col gap-1 mb-2.5">
             <label className="text-xs text-white">Destination</label>
-            <input placeholder={destination} type="text" className="h-7 border-0 px-3 bg-white rounded outline-none text-xs" />
+            <input onChange={ e => setDestination(e.target.value) } placeholder={destination} type="text" className="h-7 border-0 px-3 bg-white rounded outline-none text-xs" />
           </div>
 
           <div className="flex flex-col gap-1 mb-2.5 relative">
@@ -47,12 +56,12 @@ const List = () => {
             <div className="lsOptions p-2.5">
               <div className="lsOptionItem flex justify-between mb-2.5 text-white text-xs">
                 <span className="lsOptionText"> Min price <small className="text-gray-300">per night</small> </span>
-                <input type="number" className="lsOptionInput rounded px-2 text-center flex items-center justify-center outline-none text-slate-700 w-12" />
+                <input type="number" onChange={ e => setMin(e.target.value) } className="lsOptionInput rounded px-2 text-center flex items-center justify-center outline-none text-slate-700 w-12" />
               </div>
 
               <div className="lsOptionItem flex justify-between mb-2.5 text-white text-xs">
                 <span className="lsOptionText"> Max price <small className="text-gray-300">per night</small> </span>
-                <input type="number" className="lsOptionInput rounded px-2 text-center flex items-center justify-center outline-none text-slate-700 w-12" />
+                <input type="number" onChange={ e => setMax(e.target.value) } className="lsOptionInput rounded px-2 text-center flex items-center justify-center outline-none text-slate-700 w-12" />
               </div>
 
               <div className="lsOptionItem flex justify-between mb-2.5 text-white text-xs">
@@ -72,19 +81,22 @@ const List = () => {
             </div>
           </div>
 
-          <button className="p-2.5 bg-sky-600 text-white w-full font-medium rounded-lg">Search</button>
+          <button onClick={ handleClick } className="p-2.5 bg-sky-600 text-white w-full font-medium rounded-lg">Search</button>
         </div>
 
         <div className="listResult flex-[3]">
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
-          <SearchItem />
+          {
+            loading ? "Loading, please wait" :
+            (
+              <>
+                {
+                  data && data.map(item => (
+                    <SearchItem item={ item } key={ item._id } />
+                  ))
+                }
+              </>
+            )
+          }
         </div>
       </div>
     </div>
