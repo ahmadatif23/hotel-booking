@@ -1,4 +1,8 @@
+import useFetch from '../../hooks/useFetch.js'
+
 const FeaturedProperties = () => {
+  const { data, loading } = useFetch('hotels/countByType')
+  
   return (
     <div className="w-full container flex md:flex-row flex-col justify-between gap-5">
       <div className="flex-1 md:gap-2.5 gap-1 flex flex-col">
