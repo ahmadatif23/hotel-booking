@@ -10,7 +10,7 @@ const List = () => {
   const location = useLocation()
   const [destination, setDestination] = useState(location.state.destination)
   const [openDate, setOpenDate] = useState(false)
-  const [date, setDate] = useState(location.state.date)
+  const [dates, setDates] = useState(location.state.dates)
   const [options, setOptions] = useState(location.state.options)
   const [min, setMin] = useState(undefined)
   const [max, setMax] = useState(undefined)
@@ -36,15 +36,15 @@ const List = () => {
             <label className="text-xs text-white">Check-in Date</label>
 
             <span onClick={() => setOpenDate(!openDate)} className="h-7 px-3 rounded text-xs bg-white flex items-center cursor-pointer">
-              {`${format( date[0].startDate, "MM/dd/yyyy" )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
+              {`${format( dates[0].startDate, "MM/dd/yyyy" )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}
             </span>
 
             {
               openDate &&
               <DateRange
-                onChange={(item) => setDate([item.selection])}
+                onChange={(item) => setDates([item.selection])}
                 minDate={new Date()}
-                ranges={date}
+                ranges={dates}
                 className="absolute top-14 shadow rounded overflow-hidden"
               />
             }
