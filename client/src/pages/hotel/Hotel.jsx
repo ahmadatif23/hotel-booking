@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react'
 import useFetch from '../../hooks/useFetch.js'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 import Mailist from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
 import { SearchContext } from '../../context/SearchContext.js'
+import { AuthContext } from '../../context/AuthContext.js'
+import Reserve from '../../components/reserve/Reserve.jsx'
 
 const Hotel = () => {
   const location = useLocation()
@@ -14,10 +16,13 @@ const Hotel = () => {
 
   const [slideNumber, setSlideNumber] = useState(0)
   const [open, setOpen] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
   const { data, loading } = useFetch(`/hotels/find/${ id }`)
 
   const { dates, options } = useContext(SearchContext)
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
   function dayDifference(date1, date2) {
@@ -43,6 +48,14 @@ const Hotel = () => {
     }
 
     setSlideNumber(newSlideNumber)
+  }
+
+  const handleClick = () => {
+    if(user) {
+      setOpenModal(true)
+    } else {
+      navigate('/login ')
+    }
   }
 
   return (
@@ -111,7 +124,7 @@ const Hotel = () => {
                     
                     <h2 className='font-light'> <b>${ days * data.cheapestPrice * options.room }</b> ({ days } nights) </h2>
 
-                    <button className='px-2.5 py-5 bg-sky-600 text-white font-bold rounded-md'>Reserve or Book Now!</button>
+                    <button onClick={ handleClick } className='px-2.5 py-5 bg-sky-600 text-white font-bold rounded-md'>Reserve or Book Now!</button>
                   </div>
                 </div>
               </div>
@@ -125,6 +138,11 @@ const Hotel = () => {
         <Mailist />
         <Footer />
       </div>
+
+      {
+        openModal &&
+        <Reserve setOpen={ setOpenModal } hotelId={ id } />
+      }
     </>
   )
 }
