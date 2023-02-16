@@ -8,6 +8,7 @@ import { useContext, useState } from 'react'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { SearchContext } from '../../context/SearchContext.js'
+import { AuthContext } from '../../context/AuthContext.js'
 
 const Header = () => {
   // SET DATE
@@ -42,8 +43,9 @@ const Header = () => {
     })
   }
 
-  // USE SEARCH CONTEXT
+  // USE CONTEXT
   const { dispatch } = useContext(SearchContext)
+  const { user } = useContext(AuthContext)
 
   // GO TO ROUTE ON SEARCH
   const handleSearch = () => {
@@ -83,7 +85,10 @@ const Header = () => {
                 <h1 className='md:text-4xl text-3xl font-bold'>A lifetime of discounts? It's Genius.</h1>
                 <p className='my-5 text-sm md:text-base'>Get rewarded for your travels - unlock instant savings of 10% or more with a free BooKit account</p>
 
-                <button className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Sign In / Register</button>
+                {
+                  !user &&
+                  <button className='bg-sky-400 text-white text-sm tracking-wider px-6 p-2.5 rounded-full shadow'>Sign In / Register</button>
+                }
 
                 <div className='bg-white rounded-xl flex md:flex-row flex-col items-center justify-around p-2.5 absolute bottom-0 transform translate-y-1/2 w-full container shadow-md text-sm'>
                   <div className='flex flex-1 justify-center items-center gap-2.5'>
