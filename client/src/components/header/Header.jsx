@@ -49,6 +49,8 @@ const Header = () => {
 
   // GO TO ROUTE ON SEARCH
   const handleSearch = () => {
+    setOpenDate(false)
+    setOpenOptions(false)
     dispatch({ type: 'NEW_SEARCH', payload: { destination, dates, options } })
     navigate('/hotels', { state: {destination, dates, options  } })
   }
@@ -66,14 +68,17 @@ const Header = () => {
                 <FontAwesomeIcon icon={ faPlane } />
                 <span className='md:block hidden'>Flights</span>
               </div>
+
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faCar } />
                 <span className='md:block hidden'>Car Rentals</span>
               </div>
+
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faToriiGate } />
                 <span className='md:block hidden'>Attractions</span>
               </div>
+              
               <div className='flex items-center gap-2.5'>
                 <FontAwesomeIcon icon={ faTaxi } />
                 <span className='md:block hidden'>Airport Taxis</span>

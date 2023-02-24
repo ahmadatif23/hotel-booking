@@ -1,4 +1,5 @@
 import useFetch from '../../hooks/useFetch.js'
+import defaultPhoto from '../../default.png'
 
 const FeaturedProperties = () => {
   const { data, loading } = useFetch('hotels/?featured=true&limit=4')
@@ -13,7 +14,7 @@ const FeaturedProperties = () => {
               data && data.map((item, i) => (
                 <div key={ item._id } className="flex-1 md:gap-2.5 gap-1 flex flex-col">
                   <img
-                    src={ item.photos[0] }
+                    src={ item.photos[0] ? item.photos[0] : defaultPhoto }
                     alt=""
                     className="w-100 h-60 object-cover rounded-lg"
                   />
