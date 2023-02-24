@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
+import axios from 'axios'
 import useFetch from "../../hooks/useFetch.js";
 import { SearchContext } from '../../context/SearchContext.js'
 
@@ -16,20 +17,42 @@ const Reserve = ({ setOpen, hotelId }) => {
         setSelectedRooms(checked ? [...selectedRooms, value] : selectedRooms.filter(item => item !== value))
     }
 
-    const getDatesInRange = (start, end) => {
+    const handleClick = async () => {
+        
+        try {
+            await Promise.all(selectedRooms.map((roomId) => {
+                const res = axios.put(`/rooms/availability/${ roomId }`, { dates: allDates })
+                return res.data
+            }))
+        } catch (err) {
+
+        }
+    }
+
+    const getDatesInRange = (startDate, endDate) => {
+        const start = new Date(startDate)
+        const end = new Date(endDate)
+
         const date = new Date(start.getTime())
 
         let list = []
 
-        while(date < end) {
+        while(date <= end) {
             list.push(new Date(date).getTime())
             date.setDate(date.getDate() + 1)
         }
-
         return list
     }
 
     const allDates = getDatesInRange(dates[0].startDate, dates[0].endDate)
+
+    const isAvailable = (roomNumber) => {
+        const isFound = roomNumber.unavailableDates.some((date) => 
+            allDates.includes(new Date(date).getTime())
+        )
+
+        return !isFound
+    }
 
     return (
         <div className="reserve w-screen h-screen bg-black bg-opacity-40 fixed top-0 left-0 flex items-center justify-center">
@@ -55,14 +78,14 @@ const Reserve = ({ setOpen, hotelId }) => {
                             {item.roomNumbers.map((roomNumber) => (
                                 <div key={ roomNumber.number } className="room flex flex-col">
                                     <label>{roomNumber.number}</label>
-                                    <input onChange={ handleSelect } type="checkbox" value={roomNumber._id} />
+                                    <input onChange={ handleSelect } type="checkbox" value={roomNumber._id} disabled={ !isAvailable(roomNumber) } />
                                 </div>
                             ))}
                         </div>
                     </div>
                 ))}
 
-                <button className="rButton px-5 py-2.5 bg-sky-600 text-white font-bold rounded-md w-full mt-5">
+                <button onClick={ handleClick } className="rButton px-5 py-2.5 bg-sky-600 text-white font-bold rounded-md w-full mt-5">
                     Reserve Now!
                 </button>
             </div>
